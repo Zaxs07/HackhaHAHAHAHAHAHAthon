@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class CollectObject : MonoBehaviour
 {
-    private SphereCollider scol;
-    private CapsuleCollider capscol;
-    private GameObject capsule;
-    Vector3 movement = new Vector3(0.0f, 0.21f, 0.0f);
+    //private CapsuleCollider capscol;
+    //Vector3 movement = new Vector3(0.0f, 0.21f, 0.0f);
 
     void Start()
     {
-        capscol = GetComponent<CapsuleCollider>();
+        //capscol = GetComponent<CapsuleCollider>();
     }
 
-    private void OnTriggerEnter(Collider capscol)
+    private void OnTriggerEnter(Collider col)
     {
-        if (capscol.CompareTag("Player"))
+        if (col.CompareTag("Player"))
         {
             Destroy(gameObject);
         }
