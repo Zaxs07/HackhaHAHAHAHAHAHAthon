@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 375098266193576292}
   - component: {fileID: 375098266193576291}
   - component: {fileID: 375098266193576290}
-  - component: {fileID: 375098266193576289}
   - component: {fileID: 375098266193576294}
+  - component: {fileID: -8289892802499337574}
   m_Layer: 0
   m_Name: Dolbaeb 1
   m_TagString: Untagged
@@ -98,21 +98,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &375098266193576289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375098266193576288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 633cbfb2bf7a93f43bb58ff242c0375d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedCaps: 30
-  capsule: {fileID: 375098266193576294}
-  movement: {x: 0, y: 0, z: 0}
 --- !u!54 &375098266193576294
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,3 +114,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-8289892802499337574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375098266193576288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773daa04e02f2fd45800f8c13ea389a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 40
+  rb: {fileID: 375098266193576294}
