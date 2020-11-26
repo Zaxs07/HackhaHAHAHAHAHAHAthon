@@ -14,9 +14,14 @@ public class EnemyStats : MonoBehaviour
     public GameObject bullet;
     public Transform bulletSpawn;
 
+    public AudioSource Barrier;
+    public AudioSource Bullet;
+    public AudioSource fire;
+
+
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -52,6 +57,7 @@ public class EnemyStats : MonoBehaviour
         {
             if (Input.GetButton("Fire2"))
             {
+                fire.Play();
                 Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
                 timeBullet = 0;
                 bull--;
@@ -64,11 +70,13 @@ public class EnemyStats : MonoBehaviour
         if (capscol.CompareTag("BarrierPack"))
         {
             barr++;
+            Barrier.Play();
         }
 
         if (capscol.CompareTag("BulletPack"))
         {
             bull++;
+            Bullet.Play();
         }
     }
 }

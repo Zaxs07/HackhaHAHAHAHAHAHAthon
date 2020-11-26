@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BarrierPack
   - BulletPack
+  - enviroment
   layers:
   - Default
   - TransparentFX
