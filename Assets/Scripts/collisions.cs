@@ -6,7 +6,6 @@ public class collisions: MonoBehaviour
 {
     private moveChairs chair;
     private float timer = 0;
-    private float period = 1f;
     private bool back = false;
     void Start()
     {
@@ -44,7 +43,8 @@ public class collisions: MonoBehaviour
         }
 
         if (collision.collider.CompareTag("freeze"))
-        { 
+        {
+            Destroy(collision.gameObject);
             chair.speedMax = 0.2f;
             chair.speed = 0.2f;
             timer = 0;
