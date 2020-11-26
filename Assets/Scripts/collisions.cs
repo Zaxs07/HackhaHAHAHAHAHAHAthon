@@ -4,47 +4,48 @@ using UnityEngine;
 
 public class collisions: MonoBehaviour
 {
-    private moveChairs chair;
+    private moveChairsTrue chair;
     private float timer = 0;
-    private float period = 1f;
-    private bool back = false;
+    private float PrevSpeedMovementMax;
+    public float SlowSpeed;
+    public float DecelerationTime;
     void Start()
     {
-        chair = gameObject.GetComponent<moveChairs>();
+        chair = gameObject.GetComponent<moveChairsTrue>();
+        SlowSpeed = 60f;
+        DecelerationTime = 5f;
        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(chair.speedMax == 0.2f)
+        if(chair.SpeedMovementMax == SlowSpeed)
         {
-            if (5f > timer)
+            if (DecelerationTime > timer)
             {
                 timer += 0.02f;
             } else
             {
-                chair.speedMax = 0.35f;
+                chair.SpeedMovementMax = PrevSpeedMovementMax;
             }
         }
 
-        if (back)
-        {
-            transform.Translate(new Vector3(0.0f, 0.0f, -0.1f));
-        }
+       
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("enviroment"))
         {
-            chair.Back(chair.speed);
-            chair.speed = 0f;
+            
         }
 
         if (collision.collider.CompareTag("freeze"))
-        { 
-            chair.speedMax = 0.2f;
-            chair.speed = 0.2f;
+        {
+            Destroy(collision.gameObject);
+            PrevSpeedMovementMax = chair.SpeedMovementMax;
+            chair.SpeedMovementMax = SlowSpeed;
+            chair.SpeedMovement = SlowSpeed;
             timer = 0;
           
                
@@ -54,10 +55,9 @@ public class collisions: MonoBehaviour
     {
         if (collision.collider.CompareTag("enviroment"))
         {
-            chair.Back(chair.speed);
-            chair.speed = 0f;
-            back = true;
-         
+            
+            
+
         }
     }
 
@@ -65,8 +65,8 @@ public class collisions: MonoBehaviour
     {
         if (collision.collider.CompareTag("enviroment"))
         {
-
-            back = !back;
+            
+           
         }
     }
 }
