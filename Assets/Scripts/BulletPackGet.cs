@@ -8,11 +8,12 @@ public class BulletPackGet : MonoBehaviour
     public Rigidbody bullet;
     private float lifeTime = 0f;
     public Vector3 movement;
-    private bool shoot;
+    private bool shoot = true;
+    
 
     void Start()
     {
-        
+        bullet.AddRelativeForce(Vector3.forward * speedBull, ForceMode.Impulse);
     }
 
     private void Update()
@@ -21,10 +22,8 @@ public class BulletPackGet : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
+    {       
         lifeTime += Time.deltaTime;
-
-        transform.Translate(Vector3.forward * speedBull * Time.deltaTime);
 
         if (lifeTime >= 10f)
         {

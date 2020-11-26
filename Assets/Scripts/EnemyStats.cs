@@ -11,7 +11,7 @@ public class EnemyStats : MonoBehaviour
 
     public GameObject barrier;
     public Transform barrierSpawn;
-    public Transform bullet;
+    public GameObject bullet;
     public Transform bulletSpawn;
 
     void Start()
@@ -48,7 +48,7 @@ public class EnemyStats : MonoBehaviour
 
     void GoBullet()
     {
-        if (bull != 0 && timeBullet >= 20f)
+        if (bull != 0 && timeBullet >= 15f)
         {
             if (Input.GetButton("Fire2"))
             {
