@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: [enviroment, freeze, checkpoint, enviroment, freeze]
+  tags:
+  - enviroment
+  - freeze
+  - checkpoint
+  - BarrierPack
+  - BulletPack
+  - enviroment
+  - enviroment
+  - freeze
   layers:
   - Default
   - TransparentFX
