@@ -6,10 +6,10 @@ public class moveChairs : MonoBehaviour
 {
     public float speed;
     public float rotate;
-
+    public float speedMax;
     private float period = 0.01f;
-    private float speedUp = 0.005f;
-    private float slowdown = 0.001f;
+    private float speedUp = 0.02f;
+    private float slowdown = 0.004f;
     private float ActionTime;
     private float moveHorizontal = 0f;
     private float moveVertical = 0f;
@@ -20,6 +20,7 @@ public class moveChairs : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speedMax = 1.35f;
         speed = 0;
         rotate = 0;
     }
@@ -90,7 +91,7 @@ public class moveChairs : MonoBehaviour
             else
             {
                 ActionTime = 0;
-                if (speed < 0.35)
+                if (speed < speedMax)
                 {
                     speed += speedUp;
                 }
@@ -102,7 +103,7 @@ public class moveChairs : MonoBehaviour
         {
             if (speed > 0.01f)
             {
-                speed -= 0.01f;
+                speed -= 0.04f;
             }
         }
         if (moveHorizontal != 0)
@@ -119,7 +120,7 @@ public class moveChairs : MonoBehaviour
 
     private void SpeedControl(bool swap)
     {
-        if (speed > 0 && direction != swap) speed -= 0.0045f;
+        if (speed > 0 && direction != swap) speed -= 0.016f;
         else if (speed <= 0) direction = swap;
     }
 
@@ -144,5 +145,9 @@ public class moveChairs : MonoBehaviour
             transform.Translate(new Vector3(0.0f, 0.0f, currentMov) * backSpeed);
         }
 
+    }
+    public float GetMovement()
+    {
+        return moveVertical;
     }
 }
