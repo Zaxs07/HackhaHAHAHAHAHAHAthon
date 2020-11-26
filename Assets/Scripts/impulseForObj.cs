@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MotionCaps : MonoBehaviour
+public class impulseForObj : MonoBehaviour
 {
-    public float speedCaps = 400f;
-    public Rigidbody capsule;
+    public float speed;
+    public Rigidbody rb;
     private float lifeTime = 0f;
-    public Vector3 movement;
 
     void Start()
     {
-        movement = new Vector3(0.2f, 0.0f, 1f);
-        capsule.AddForce(movement * speedCaps, ForceMode.Impulse);
+        rb.AddRelativeForce(Vector3.forward * speed, ForceMode.Impulse);
     }
 
     void FixedUpdate()
