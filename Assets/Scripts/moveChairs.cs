@@ -6,7 +6,7 @@ public class moveChairs : MonoBehaviour
 {
     public float speed;
     public float rotate;
-
+    public float speedMax;
     private float period = 0.01f;
     private float speedUp = 0.005f;
     private float slowdown = 0.001f;
@@ -16,9 +16,11 @@ public class moveChairs : MonoBehaviour
     private float currentMov;
     private bool direction;
     private bool rotation;
+    private bool access = true;
     // Start is called before the first frame update
     void Start()
     {
+        speedMax = 1.35f;
         speed = 0;
         rotate = 0;
     }
@@ -48,45 +50,61 @@ public class moveChairs : MonoBehaviour
         {
             moveHorizontal = 0f;
         }
-        if (Input.GetKey(KeyCode.W)) {
-            SpeedControl(true);
-            if (direction == true)
-            {
-                moveVertical = 1f;
-                currentMov = moveVertical;
-            }
-        } else if (Input.GetKey(KeyCode.S))
-        {
-            SpeedControl(false);
-            if (direction == false)
-            {
-                moveVertical = -1f;
-                currentMov = moveVertical;
-            }
-            
-        } else
-        {
-            moveVertical = 0f;
 
-        }
-        Vector3 movement = new Vector3(0.0f, 0.0f, moveVertical);
-        if (moveVertical == 0f)
-        {
-            ActionTime = 5f;
-            if (ActionTime > 0 && speed > 0)
+            if (Input.GetKey(KeyCode.W))
             {
-                speed -= slowdown;
-                transform.Translate(new Vector3(0.0f, 0.0f, currentMov) * speed);
-                ActionTime -= period;
+                SpeedControl(true);
+                if (direction == true)
+                {
+                    moveVertical = 1f;
+                    currentMov = moveVertical;
+                }
             }
-        } else {
-            ActionTime = 0;
-            if (speed < 0.35)
+            else if (Input.GetKey(KeyCode.S))
             {
-                speed += speedUp;
-            }
-            transform.Translate(movement * speed);
+                SpeedControl(false);
+                if (direction == false)
+                {
+                    moveVertical = -1f;
+                    currentMov = moveVertical;
+                }
 
+            }
+            else
+            {
+                moveVertical = 0f;
+
+            }
+
+            Vector3 movement = new Vector3(0.0f, 0.0f, moveVertical);
+
+            if (moveVertical == 0f)
+            {
+                ActionTime = 5f;
+                if (ActionTime > 0 && speed > 0)
+                {
+                    speed -= slowdown;
+                    transform.Translate(new Vector3(0.0f, 0.0f, currentMov) * speed);
+                    ActionTime -= period;
+                }
+            }
+            else
+            {
+                ActionTime = 0;
+                if (speed < speedMax)
+                {
+                    speed += speedUp;
+                }
+                transform.Translate(movement * speed);
+
+            }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (speed > 0.01f)
+            {
+                speed -= 0.01f;
+            }
         }
         if (moveHorizontal != 0)
         {
@@ -102,7 +120,7 @@ public class moveChairs : MonoBehaviour
 
     private void SpeedControl(bool swap)
     {
-        if (speed > 0 && direction != swap) speed -= 0.009f;
+        if (speed > 0 && direction != swap) speed -= 0.0045f;
         else if (speed <= 0) direction = swap;
     }
 
@@ -112,5 +130,20 @@ public class moveChairs : MonoBehaviour
         else if (rotate <= 0) rotation = swap;
            
        
+    }
+    public void SetMovement(bool permit)
+    {
+        access = permit;
+    }
+    public void Back(float backSpeed)
+    {
+        SpeedControl(false);
+        if (direction == false)
+        {
+            moveVertical = -1f;
+            currentMov = moveVertical;
+            transform.Translate(new Vector3(0.0f, 0.0f, currentMov) * backSpeed);
+        }
+
     }
 }
