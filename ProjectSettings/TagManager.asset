@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: [enviroment, freeze, checkpoint, BarrierPack, BulletPack, enviroment]
+  tags:
+  - enviroment
+  - freeze
+  - checkpoint
+  - BarrierPack
+  - BulletPack
+  - enviroment
+  - SpeedPack
+  - OtherPlayers
+  - RevertThing
   layers:
   - Default
   - TransparentFX
