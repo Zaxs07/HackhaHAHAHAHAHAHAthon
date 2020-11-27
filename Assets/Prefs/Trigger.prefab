@@ -135,6 +135,7 @@ MonoBehaviour:
   shmolik: {fileID: 375098266193576288, guid: 80b25e6cdd35d85438dc737cd7e0e98e, type: 3}
   SP: {fileID: 4922587801188169721, guid: 5579cf3e027b34d43aa55586ea9a5033, type: 3}
   BoP: {fileID: 4501768681215642368, guid: 9b362581cc1e35848900ca7e8aef6c23, type: 3}
+  VodkaPack: {fileID: 4471154814562646369, guid: eca3f63abc3d3104aa1214699753d877, type: 3}
   Spawn1: {fileID: 5496714867858631424}
   Spawn2: {fileID: 5496714868974681481}
   Spawn3: {fileID: 5496714868789351117}
