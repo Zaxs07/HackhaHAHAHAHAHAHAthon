@@ -22,7 +22,8 @@ public class EnemyStats : MonoBehaviour
     public AudioSource Bullet;
     public AudioSource fire;
     public AudioSource bottle;
-
+    public AudioSource drink;
+    public AudioSource vodka;
 
     void Start()
     {
@@ -71,18 +72,32 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider capscol)
+    private void OnTriggerEnter(Collider col)
     {
-        if (capscol.CompareTag("BarrierPack"))
+        if (col.CompareTag("BarrierPack"))
         {
             barr++;
             Barrier.Play();
         }
 
-        if (capscol.CompareTag("BulletPack"))
+        if (col.CompareTag("BulletPack"))
         {
             bull++;
             Bullet.Play();
+        }
+
+        if (col.CompareTag("SpeedPack"))
+        {
+            SpeedBonus sb = GameObject.FindWithTag("SpeedPack").GetComponent<SpeedBonus>();
+            sb.run = true;
+            drink.Play();
+        }
+
+        if (col.CompareTag("RevertThing"))
+        {
+            RevertMotions rm = GameObject.FindWithTag("RevertThing").GetComponent<RevertMotions>();
+            rm.On = true;
+            vodka.Play();
         }
     }
 }

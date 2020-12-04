@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class CollectObject : MonoBehaviour
 {
-    //private CapsuleCollider capscol;
-    //Vector3 movement = new Vector3(0.0f, 0.21f, 0.0f);
-
+    
     void Start()
     {
-        //capscol = GetComponent<CapsuleCollider>();
+       
     }
 
     private void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            if (gameObject.CompareTag("SpeedPack") || gameObject.CompareTag("RevertThing"))
+            {
+                Destroy(transform.GetChild(0).gameObject);
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+                if (gameObject.CompareTag("SpeedPack"))
+                    Destroy(gameObject, 3f);
+                else
+                    Destroy(gameObject, 6f);
+            }
+            else
+                Destroy(gameObject);
         }
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - enviroment
   - enviroment
   - freeze
+  - bullet
   layers:
   - Default
   - TransparentFX

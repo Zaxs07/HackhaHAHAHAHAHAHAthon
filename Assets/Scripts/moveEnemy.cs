@@ -9,6 +9,8 @@ public class moveEnemy : MonoBehaviour
     public float speedRotation;
     public float speedMov;
     private bool next = true;
+    public bool infMove;
+    private Rigidbody _rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +18,12 @@ public class moveEnemy : MonoBehaviour
         {
             checkpoints[i] = GameObject.Find("checkpoint (" + i + ")").transform;
         }
-        speedRotation = 1f;
-        speedMov = 0.35f;
+        speedRotation = 4f;
+        speedMov = 100f;
+        infMove = true;
+        _rb = GetComponent<Rigidbody>();
+        _rb.drag = 3f;
+        _rb.angularDrag = 4;
     }
 
     // Update is called once per frame
@@ -26,8 +32,9 @@ public class moveEnemy : MonoBehaviour
         if (next)
         {
             Vector3 Rotation = checkpoints[child].position - transform.position;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Rotation), speedRotation);
-            transform.position += transform.forward * speedMov;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Rotation), speedRotation * Time.deltaTime);
+            //_rb.AddRelativeTorque(rotate.eulerAngles * speedRotation);
+            _rb.AddRelativeForce(Vector3.forward * speedMov);
         }
     }
 
@@ -36,10 +43,18 @@ public class moveEnemy : MonoBehaviour
         if (other.CompareTag("checkpoint"))
         {
             child++;
-            if (child == 130)
+            if (child == checkpoints.Length - 1)
             {
-                next = false;
+                if (infMove)
+                {
+                    child = 0;
+                }
+                else
+                {
+                    next = false;
+                }
             }
+
         };
     }
 }
